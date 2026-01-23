@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 import feedparser
 app = Flask(__name__)
 
@@ -8,7 +8,12 @@ NEWS_FEED = {"bbc": "http://feeds.bbci.co.uk/news/rss.xml",
 
 @app.route("/")
 @app.route("/<publication>")
-def get_news(publication="bbc"):
+def get_news():
+    query = request.args.get("publication")
+    if not query or query.lower() not in NEWS_FEED:
+        publication = "bbc"
+    else:
+        publication = query.lower()
     feed = feedparser.parse(NEWS_FEED[publication])
     articles = feed['entries']
     return render_template("home.html",articles = articles)
