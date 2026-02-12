@@ -6,7 +6,7 @@ import urllib
 from tomlkit import key
 import urllib3
 import datetime
-
+import os
 
 DEFAULTS = {"publication":"bbc",
             "city":"London, UK",
@@ -89,4 +89,4 @@ def get_value_with_fallback(key):
         return request.cookies.get(key)
     return DEFAULTS[key]
 if __name__ == '__main__':
-    app.run(debug=True,port=5500)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5500)))

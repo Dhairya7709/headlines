@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: headlines
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn headlines:app
