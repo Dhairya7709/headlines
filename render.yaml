@@ -13,5 +13,5 @@ projects:
       plan: free
       region: oregon
       buildCommand: pip install -r requirements.txt
-      startCommand: gunicorn headlines.wsgi
+      startCommand: gunicorn headlines:app
       autoDeployTrigger: commit
