@@ -1,6 +1,17 @@
-services:
-  - type: web
-    name: headlines
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn headlines:app
+# Exported from Render on 2026-02-12T15:11:04Z
+version: "1"
+projects:
+- name: My project
+  environments:
+  - name: Production
+    services:
+    - type: web
+      name: headlines
+      runtime: python
+      repo: https://github.com/Dhairya7709/headlines
+      branch: master
+      plan: free
+      region: oregon
+      buildCommand: pip install -r requirements.txt
+      startCommand: gunicorn headlines.wsgi
+      autoDeployTrigger: commit
